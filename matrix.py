@@ -13,23 +13,20 @@ class Matrix:
             self.size = len(arg)
             self.data = None
             self.fill(arg)
+        else:
+            raise TypeError
 
     def __str__(self):
         return str(self.data)
 
     def __repr__(self):
-        return str(self)
+        return str(self.data)
 
     def __getitem__(self, index):
         if isinstance(index, slice):
             return Matrix([line[index] for line in self.data[index]])
         else:
             raise ValueError
-
-    def get_submatrix(self, rows_slice, columns_slice):
-        if not (isinstance(rows_slice, slice) and isinstance(columns_slice, slice)):
-            raise TypeError
-        return Matrix([line[columns_slice] for line in self.data[rows_slice]])
 
     def __mul__(self, other):
         if isinstance(other, int) or isinstance(other, float):
@@ -85,5 +82,21 @@ class Matrix:
         return Matrix([line[:j]+line[j+1:] for line in self.data[:i]+self.data[i+1:]])
 
     def get_determinant(self):
-        if self.size == 1: return self.data[0][0]
+        if self.size == 1:
+            return self.data[0][0]
         return sum([self.data[0][i] * (-1) ** i * self.get_minor(0, i).get_determinant() for i in range(self.size)])
+
+    def add_border(self, row, column, corner_element):
+        numbers = self.data
+        row.data[0].append(corner_element)
+        numbers.append(
+            row.data[0])
+        for i in range(self.size):
+            numbers[i].append(column.data[i][0])
+        return Matrix(numbers)
+
+    def __round__(self, n=3):
+        for i in range(self.size):
+            for j in range(self.size):
+                self.data[i][j] = round(self.data[i][j], n)
+        return self

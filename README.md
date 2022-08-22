@@ -6,8 +6,9 @@ The application for inversion of matrices by methods of partitioning into cells 
 * Matrix input and validation
 * Matrix operations such as creation, multiplication, adding, substraction, getting minors and determinants, ect.
 * A separate class to store the main styles
+* Bordering method created
+* Appearance improved
 
 ## Under development:
-* Improving appearance
-* Methods of matrix inversion
+* Partitioning into cells method of matrix inversion
 * Result output

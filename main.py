@@ -1,4 +1,5 @@
 from user_input import UserInput
+from matrix_invertor import MatrixInverter
 
 
 t = UserInput()
@@ -13,3 +14,10 @@ if not t.method:
 print(t.matrix)
 print(t.matrix_size)
 print(t.method)
+
+t_inv = MatrixInverter.invert_bordering(t.matrix)
+round(t_inv)
+print()
+print(t_inv)
+print()
+print(round(t_inv*t.matrix))

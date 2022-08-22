@@ -117,8 +117,7 @@ class UserInput:
 
         label1.pack()
         field_frame.pack()
-        Label(root, height=1, bg=standard_bg).pack()
-        button_frame.pack()
+        button_frame.place(anchor='center', relx=0.5, rely=0.9)
         button_increase.pack(side='left')
         button_reduce.pack(side='left')
         button_clear.pack(side='left')
