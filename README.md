@@ -1,6 +1,6 @@
 # Matrix Inversion
 
-The application for inversion of matrices by methods of partitioning into cells and bordering
+The application for matrix inversion by methods of partitioning into cells and bordering
 
 ## Done:
 * Matrix input and validation
