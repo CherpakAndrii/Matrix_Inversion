@@ -1,14 +1,17 @@
 class Matrix:
     def __init__(self, arg):
         if isinstance(arg, int):
-            if arg < 1: raise ValueError
+            if arg < 1:
+                raise ValueError
             self.size = arg
             self.data = [[0 for _ in range(arg)] for _ in range(arg)]
             for i in range(self.size):
                 self.data[i][i] = 1
         elif isinstance(arg, list):
-            if len(arg) == 0: raise ValueError
+            if len(arg) == 0:
+                raise ValueError
             self.size = len(arg)
+            self.data = None
             self.fill(arg)
 
     def __str__(self):
@@ -19,26 +22,22 @@ class Matrix:
 
     def __getitem__(self, index):
         if isinstance(index, slice):
-            numbers = [line[index] for line in self.data[index]]
-            return Matrix(numbers)
+            return Matrix([line[index] for line in self.data[index]])
         else:
             raise ValueError
 
+    def get_submatrix(self, rows_slice, columns_slice):
+        if not (isinstance(rows_slice, slice) and isinstance(columns_slice, slice)):
+            raise TypeError
+        return Matrix([line[columns_slice] for line in self.data[rows_slice]])
+
     def __mul__(self, other):
         if isinstance(other, int) or isinstance(other, float):
-            numbers = [[num * other for num in line] for line in self.data]
-            new_matrix = Matrix(self.size)
-            new_matrix.fill(numbers)
-            return new_matrix
+            return Matrix([[num * other for num in line] for line in self.data])
         elif isinstance(other, Matrix):
             if self.size == other.size:
-                numbers = [[sum(self.data[i][n]*other.data[n][j]
-                                for n in range(self.size))
-                            for j in range(self.size)]
-                           for i in range(self.size)]
-                new_matrix = Matrix(self.size)
-                new_matrix.fill(numbers)
-                return new_matrix
+                return Matrix([[sum(self.data[i][n]*other.data[n][j] for n in range(self.size))
+                                for j in range(self.size)] for i in range(self.size)])
             else:
                 raise ValueError
         else:
@@ -47,11 +46,8 @@ class Matrix:
     def __add__(self, other):
         if isinstance(other, Matrix):
             if self.size == other.size:
-                new_matrix = Matrix(self.size)
-                numbers = [[num1+num2 for (num1, num2) in zip(line1, line2)]
-                           for (line1, line2) in zip(self.data, other.data)]
-                new_matrix.fill(numbers)
-                return new_matrix
+                return Matrix([[num1+num2 for (num1, num2) in zip(line1, line2)]
+                               for (line1, line2) in zip(self.data, other.data)])
             else:
                 raise ValueError
         else:
@@ -60,11 +56,8 @@ class Matrix:
     def __sub__(self, other):
         if isinstance(other, Matrix):
             if self.size == other.size:
-                new_matrix = Matrix(self.size)
-                numbers = [[num1-num2 for (num1, num2) in zip(line1, line2)]
-                           for (line1, line2) in zip(self.data, other.data)]
-                new_matrix.fill(numbers)
-                return new_matrix
+                return Matrix([[num1-num2 for (num1, num2) in zip(line1, line2)]
+                               for (line1, line2) in zip(self.data, other.data)])
             else:
                 raise ValueError
         else:
@@ -89,12 +82,8 @@ class Matrix:
             raise TypeError
 
     def get_minor(self, i, j):
-        numbers = [line[:j]+line[j+1:] for line in self.data[:i]+self.data[i+1:]]
-        return Matrix(numbers)
+        return Matrix([line[:j]+line[j+1:] for line in self.data[:i]+self.data[i+1:]])
 
     def get_determinant(self):
         if self.size == 1: return self.data[0][0]
-        determinant = 0
-        for i in range(self.size):
-            determinant += self.data[0][i] * (-1) ** i * self.get_minor(0, i).get_determinant()
-        return determinant
+        return sum([self.data[0][i] * (-1) ** i * self.get_minor(0, i).get_determinant() for i in range(self.size)])

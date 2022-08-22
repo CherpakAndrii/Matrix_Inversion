@@ -1,5 +1,6 @@
 from user_input import UserInput
 
+
 t = UserInput()
 t.get_matrix()
 if not t.matrix:
