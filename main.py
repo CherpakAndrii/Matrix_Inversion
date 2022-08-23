@@ -11,7 +11,7 @@ inp.get_method()
 if not inp.method:
     print("The program has been closed at the method selection stage")
     quit(2)
-print("Inputted", inp.matrix)
+print("Inputted: ", inp.matrix)
 
 m_inv = MatrixInverter.invert_bordering(inp.matrix) if inp.method == 'border' else MatrixInverter.invert_cells(inp.matrix)
 test = round(m_inv * inp.matrix)

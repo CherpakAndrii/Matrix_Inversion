@@ -1,6 +1,5 @@
 # Matrix Inversion
-
-The application for matrix inversion by methods of partitioning into cells and bordering
+#### The application for matrix inversion by methods of partitioning into cells and bordering
 
 ## Done:
 * Matrix input and validation
@@ -10,9 +9,9 @@ The application for matrix inversion by methods of partitioning into cells and b
 * Appearance improved
 * Partitioning into cells method of matrix inversion
 * Console result output
+* Input validation fix
 
 ## Under development:
-* Input validation fix
 * Advanced result output
 * Comments
 * Documentation

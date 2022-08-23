@@ -79,7 +79,7 @@ class UserInput:
                     str_val = field.get().replace(' ', '')
                     if len(str_val) == 0:
                         row.append(0)
-                    elif str_val.replace('.', '', 1).replace('-', '', 1).isdigit():
+                    elif (str_val[1:] if str_val[0] == '-' else str_val).replace('.', '', 1).isdigit():
                         row.append(float(str_val))
                     else:
                         raise TypeError
@@ -96,11 +96,11 @@ class UserInput:
                 self.matrix = __parse_matrix()
                 root.destroy()
             except TypeError:
-                messagebox.showinfo("Помилка вводу",
-                                    "Будь ласка, не використовуйте інших символів, окрім цифр, роздільника крапки та знаку '-'!")
+                messagebox.showinfo("Помилка вводу", "Будь ласка, не використовуйте інших символів, окрім цифр, знаку" +
+                                    " '-' перед числом та роздільника '.'!")
             except ValueError:
-                messagebox.showinfo("Вироджена матриця",
-                                    "Увага! Вироджені матриці не можуть бути обернені! Будь ласка, введіть іншу матрицю!")
+                messagebox.showinfo("Вироджена матриця", "Увага! Вироджені матриці не можуть бути обернені! Будь" +
+                                    " ласка, введіть іншу матрицю!")
             except:
                 messagebox.showinfo("Неочікувана помилка", "Упс, щось пішло не так :(")
 
