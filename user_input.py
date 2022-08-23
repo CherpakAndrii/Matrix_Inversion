@@ -136,9 +136,9 @@ class UserInput:
         root.geometry('350x200')
 
         label1 = Label(root, fg='blue', bg=standard_bg, text="Оберіть метод обернення матриці:", font=article_font)
-        method = StringVar(value="1")
-        rb1 = Radiobutton(root, text="Метод окаймлення", bg=standard_bg, variable=method, value="1")
-        rb2 = Radiobutton(root, text="Метод розбиття на клітинки", bg=standard_bg, variable=method, value="2")
+        method = StringVar(value="cells")
+        rb1 = Radiobutton(root, text="Метод окаймлення", bg=standard_bg, variable=method, value="border")
+        rb2 = Radiobutton(root, text="Метод розбиття на клітинки", bg=standard_bg, variable=method, value="cells")
 
         def get_info():
             messagebox.showinfo("Дані про методи", "")

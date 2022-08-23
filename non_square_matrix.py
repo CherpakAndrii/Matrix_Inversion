@@ -35,6 +35,7 @@ class NonSquareMatrix:
             else:
                 raise ValueError
         else:
+            print(type(other))
             raise TypeError
 
     def __add__(self, other):
@@ -44,6 +45,7 @@ class NonSquareMatrix:
             else:
                 raise ValueError
         else:
+            print(type(other))
             raise TypeError
 
     def __sub__(self, other):
@@ -81,3 +83,12 @@ class NonSquareMatrix:
 
     def get_minor(self, i, j):
         return NonSquareMatrix([line[:j]+line[j+1:] for line in self.data[:i]+self.data[i+1:]])
+
+    def merge(self, right_side, bottom, corner_matrix):
+        if not (isinstance(right_side, NonSquareMatrix) and isinstance(bottom, NonSquareMatrix) and
+                isinstance(corner_matrix, NonSquareMatrix) and self.width+right_side.width == self.height+bottom.height
+                == bottom.width+corner_matrix.width == right_side.height+corner_matrix.height):
+            raise ArithmeticError
+
+        return Matrix([ln1+ln2 for (ln1, ln2) in zip(self.data, right_side.data)] +
+                      [ln3+ln4 for (ln3, ln4) in zip(bottom.data, corner_matrix.data)])

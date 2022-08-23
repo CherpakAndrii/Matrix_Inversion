@@ -14,6 +14,7 @@ class Matrix:
             self.data = None
             self.fill(arg)
         else:
+            print(type(arg))
             raise TypeError
 
     def __str__(self):

@@ -8,7 +8,11 @@ The application for matrix inversion by methods of partitioning into cells and b
 * A separate class to store the main styles
 * Bordering method created
 * Appearance improved
+* Partitioning into cells method of matrix inversion
+* Console result output
 
 ## Under development:
-* Partitioning into cells method of matrix inversion
-* Result output
+* Input validation fix
+* Advanced result output
+* Comments
+* Documentation
