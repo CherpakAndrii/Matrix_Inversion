@@ -1,9 +1,9 @@
 standard_bg = '#cdcdcd'
-button_font = "Arial 10 bold italic"
-article_font = "Arial 14 bold italic"
+button_font = "Arial 15 bold italic"
+article_font = "Arial 20 bold italic"
 confirm_button_bg = '#94E851'
 standard_button_bg = 'blue'
 cancel_button_bg = 'red'
-button_fg = 'white'
+button_fg = 'black'
 disabled_button_bg = 'grey'
 info_button_bg = '#909090'

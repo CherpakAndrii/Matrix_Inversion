@@ -4,9 +4,9 @@ class Matrix:
             if arg < 1:
                 raise ValueError
             self.size = arg
-            self.data = [[0 for _ in range(arg)] for _ in range(arg)]
+            self.data = [[0.0 for _ in range(arg)] for _ in range(arg)]
             for i in range(self.size):
-                self.data[i][i] = 1
+                self.data[i][i] = 1.0
         elif isinstance(arg, list):
             if len(arg) == 0:
                 raise ValueError
@@ -16,6 +16,15 @@ class Matrix:
         else:
             print(type(arg))
             raise TypeError
+
+    def __eq__(self, other):
+        if not (isinstance(other, Matrix) and self.size == other.size):
+            return False
+        for ln1, ln2 in zip(self.data, other.data):
+            for el1, el2 in zip(ln1, ln2):
+                if el1 != el2:
+                    return False
+        return True
 
     def __str__(self):
         return str(self.data)

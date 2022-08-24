@@ -16,7 +16,7 @@ class UserInput:
         root = Tk()
         root.config(bg=standard_bg)
         root.title("Обернення матриці")
-        root.geometry('700x370')
+        root.geometry('850x450')
 
         label1 = Label(root, fg='blue', bg=standard_bg, text="Введіть матрицю:", font=article_font, heigh=3)
         field_frame = Frame(root)
@@ -32,7 +32,7 @@ class UserInput:
             self.__lines.append(new_line)
             values = [StringVar() for _ in range(self.matrix_size)]
             self.__field_values.append(values)
-            new_fields = [Entry(new_line, width=7, textvariable=v) for v in values]
+            new_fields = [Entry(new_line, width=7, textvariable=v, highlightbackground = standard_bg) for v in values]
             self.__fields.append(new_fields)
 
             new_line.pack()
@@ -43,13 +43,13 @@ class UserInput:
             for i in range(self.matrix_size):
                 new_val = StringVar()
                 self.__field_values[i].append(new_val)
-                new_field = Entry(self.__lines[i], width=7, textvariable=new_val)
+                new_field = Entry(self.__lines[i], width=7, textvariable=new_val, highlightbackground = standard_bg)
                 self.__fields[i].append(new_field)
                 new_field.pack(side='left')
 
-            button_reduce.config(bg=standard_button_bg, state='normal')
+            button_reduce.config(highlightbackground=standard_button_bg, state='normal')
             if self.matrix_size >= 10:
-                button_increase.config(bg=disabled_button_bg, state='disabled')
+                button_increase.config(highlightbackground=disabled_button_bg, state='disabled')
 
         def reduce():
             self.__fields.pop()
@@ -62,9 +62,9 @@ class UserInput:
                 self.__field_values[i].pop()
                 redundant_field.pack_forget()
 
-            button_increase.config(bg=standard_button_bg, state='normal')
+            button_increase.config(highlightbackground=standard_button_bg, state='normal')
             if self.matrix_size <= 2:
-                button_reduce.config(bg=disabled_button_bg, state='disabled')
+                button_reduce.config(highlightbackground=disabled_button_bg, state='disabled')
 
         def clear():
             for line in self.__fields:
@@ -104,15 +104,15 @@ class UserInput:
             except:
                 messagebox.showinfo("Неочікувана помилка", "Упс, щось пішло не так :(")
 
-        button_increase = Button(button_frame, text="+", command=increase, font=button_font, width=10, heigh=2,
+        button_increase = Button(button_frame, text="+", command=increase, font=button_font, width=10, heigh=3,
                                  highlightbackground=standard_button_bg, fg=button_fg)
-        button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, heigh=2,
+        button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, heigh=3,
                                highlightbackground=standard_button_bg, fg=button_fg)
-        button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, heigh=2,
+        button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, heigh=3,
                               highlightbackground=cancel_button_bg, fg=button_fg)
-        button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, heigh=2,
+        button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, heigh=3,
                              highlightbackground=confirm_button_bg, fg=button_fg)
-        button_info = Button(root, text="?", command=get_info, font=button_font, width=2, heigh=1, highlightbackground=info_button_bg,
+        button_info = Button(root, text="?", command=get_info, font=button_font, width=4, heigh=2, highlightbackground=info_button_bg,
                              fg=button_fg)
 
         label1.pack()
@@ -133,7 +133,7 @@ class UserInput:
         root = Tk()
         root.config(bg=standard_bg)
         root.title("Обернення матриці")
-        root.geometry('350x200')
+        root.geometry('400x230')
 
         label1 = Label(root, fg='blue', bg=standard_bg, text="Оберіть метод обернення матриці:", font=article_font)
         method = StringVar(value="cells")
@@ -148,9 +148,9 @@ class UserInput:
             self.method = method.get()
             root.destroy()
 
-        button_info = Button(root, text="?", command=get_info, width=2, heigh=1, font=button_font, highlightbackground=info_button_bg,
+        button_info = Button(root, text="?", command=get_info, width=4, heigh=2, font=button_font, highlightbackground=info_button_bg,
                              fg=button_fg)
-        button_end = Button(root, text="Обчислити", command=end, width=10, heigh=2, font=button_font,
+        button_end = Button(root, text="Обчислити", command=end, width=15, heigh=3, font=button_font,
                             highlightbackground=confirm_button_bg, fg=button_fg)
 
         label1.place(anchor='center', relx=0.5, rely=0.25)

@@ -10,6 +10,7 @@
 * Partitioning into cells method of matrix inversion
 * Console result output
 * Input validation fix
+* MacOS appearance fix
 
 ## Under development:
 * Advanced result output

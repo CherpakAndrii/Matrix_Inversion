@@ -1,3 +1,4 @@
+from matrix import Matrix
 from user_input import UserInput
 from matrix_invertor import MatrixInverter
 
@@ -20,4 +21,4 @@ print()
 print("Method: ", inp.method)
 print("Inverted: ", m_inv)
 print()
-print("Test: ", test)
+print("Test: ", Matrix(test.data) == Matrix(inp.matrix.size))
