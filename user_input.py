@@ -105,14 +105,14 @@ class UserInput:
                 messagebox.showinfo("Неочікувана помилка", "Упс, щось пішло не так :(")
 
         button_increase = Button(button_frame, text="+", command=increase, font=button_font, width=10, heigh=2,
-                                 bg=standard_button_bg, fg=button_fg)
+                                 highlightbackground=standard_button_bg, fg=button_fg)
         button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, heigh=2,
-                               bg=standard_button_bg, fg=button_fg)
+                               highlightbackground=standard_button_bg, fg=button_fg)
         button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, heigh=2,
-                              bg=cancel_button_bg, fg=button_fg)
+                              highlightbackground=cancel_button_bg, fg=button_fg)
         button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, heigh=2,
-                             bg=confirm_button_bg, fg=button_fg)
-        button_info = Button(root, text="?", command=get_info, font=button_font, width=2, heigh=1, bg=info_button_bg,
+                             highlightbackground=confirm_button_bg, fg=button_fg)
+        button_info = Button(root, text="?", command=get_info, font=button_font, width=2, heigh=1, highlightbackground=info_button_bg,
                              fg=button_fg)
 
         label1.pack()
@@ -125,7 +125,7 @@ class UserInput:
         button_info.place(anchor='ne', relx=1, rely=0)
         increase()
         increase()
-        button_reduce.config(state='disabled', bg=disabled_button_bg)
+        button_reduce.config(state='disabled', highlightbackground=disabled_button_bg)
 
         root.mainloop()
 
@@ -148,10 +148,10 @@ class UserInput:
             self.method = method.get()
             root.destroy()
 
-        button_info = Button(root, text="?", command=get_info, width=2, heigh=1, font=button_font, bg=info_button_bg,
+        button_info = Button(root, text="?", command=get_info, width=2, heigh=1, font=button_font, highlightbackground=info_button_bg,
                              fg=button_fg)
         button_end = Button(root, text="Обчислити", command=end, width=10, heigh=2, font=button_font,
-                            bg=confirm_button_bg, fg=button_fg)
+                            highlightbackground=confirm_button_bg, fg=button_fg)
 
         label1.place(anchor='center', relx=0.5, rely=0.25)
         button_info.place(anchor='ne', relx=1, rely=0)
