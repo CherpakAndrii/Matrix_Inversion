@@ -75,7 +75,7 @@ class UserInput:
             data = MatrixRandomizer.generate_matrix(self.matrix_size)
             for i in range(self.matrix_size):
                 for j in range(self.matrix_size):
-                    self.__field_values[i][j].set(str(data[i][j]))
+                    self.__field_values[i][j].set(str(round(data[i][j], 2)))
                     root.update()
             label1.config(text="Введіть матрицю:")
 
