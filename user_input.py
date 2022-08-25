@@ -2,6 +2,7 @@ from tkinter import Label, Button, Tk, Entry, Frame, StringVar, Radiobutton, END
 from style import *
 from matrix import Matrix
 from matrix_randomizer import MatrixRandomizer
+from matrix_randomizer import MatrixRandomizer
 
 
 class UserInput:
@@ -97,11 +98,10 @@ class UserInput:
                     else:
                         raise TypeError
                 numbers.append(row)
-            matrix = Matrix(numbers)
-            if matrix.get_determinant() == 0:
-                raise ValueError
+            if MatrixRandomizer.check(numbers):
+                return Matrix(numbers)
             else:
-                return matrix
+                raise ValueError
 
         # closes the current window and going to the next stage
         def go_next():
@@ -112,8 +112,8 @@ class UserInput:
                 messagebox.showinfo("Помилка вводу", "Будь ласка, не використовуйте інших символів, окрім цифр, знаку" +
                                     " '-' перед числом та роздільника '.'!")
             except ValueError:
-                messagebox.showinfo("Вироджена матриця", "Увага! Вироджені матриці не можуть бути обернені! Будь" +
-                                    " ласка, введіть іншу матрицю!")
+                messagebox.showinfo("Вироджена матриця", "Увага! Вироджені матриці або матриці з нулями на головній" +
+                                    " діагоналі не можуть бути обернені! Будь ласка, введіть іншу матрицю!")
             except:
                 messagebox.showinfo("Неочікувана помилка", "Упс, щось пішло не так :(")
 

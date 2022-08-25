@@ -11,8 +11,13 @@
 * Console result output
 * Input validation fix
 * MacOS appearance fix
+* Matrix randomize
+* Optimized validation
+* Writing results to file
+* Bug with 0s on main diagonal fixed
 
 ## Under development:
 * Advanced result output
 * Comments
+* Method info
 * Documentation
