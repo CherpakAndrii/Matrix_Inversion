@@ -1,6 +1,4 @@
 import numpy as np
-
-
 class Matrix:
     def __init__(self, arg):
         if isinstance(arg, int):
@@ -98,7 +96,8 @@ class Matrix:
         if self.size == 1:
             return self.data[0][0]
         return sum([self.data[0][i] * (-1) ** i * self.get_minor(0, i).get_determinant() for i in range(self.size)]) \
-            if self.size < 8 else np.linalg.det(np.array(self.data))
+            if self.size < 8 else np.linalg.det(np.array(self.data)) # для n>=8 пошук детермінанту займає
+        # значно більше часу через факторіальну складність алгоритму, тому використаємо numpy
 
     def add_border(self, row, column, corner_element):
         numbers = self.data
