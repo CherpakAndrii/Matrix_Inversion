@@ -1,6 +1,7 @@
 from tkinter import Label, Button, Tk, Entry, Frame, StringVar, Radiobutton, END, messagebox
 from style import *
 from matrix import Matrix
+from matrix_randomizer import MatrixRandomizer
 
 
 class UserInput:
@@ -32,7 +33,7 @@ class UserInput:
             self.__lines.append(new_line)
             values = [StringVar() for _ in range(self.matrix_size)]
             self.__field_values.append(values)
-            new_fields = [Entry(new_line, width=7, textvariable=v, highlightbackground = standard_bg) for v in values]
+            new_fields = [Entry(new_line, width=7, textvariable=v, highlightbackground=standard_bg) for v in values]
             self.__fields.append(new_fields)
 
             new_line.pack()
@@ -65,6 +66,18 @@ class UserInput:
             button_increase.config(highlightbackground=standard_button_bg, state='normal')
             if self.matrix_size <= 2:
                 button_reduce.config(highlightbackground=disabled_button_bg, state='disabled')
+
+        def randomize():
+            if self.matrix_size >= 8:
+                clear()
+                label1.config(text="Очікуйте...")
+                root.update()
+            data = MatrixRandomizer.generate_matrix(self.matrix_size)
+            for i in range(self.matrix_size):
+                for j in range(self.matrix_size):
+                    self.__field_values[i][j].set(str(data[i][j]))
+                    root.update()
+            label1.config(text="Введіть матрицю:")
 
         def clear():
             for line in self.__fields:
@@ -108,6 +121,8 @@ class UserInput:
                                  highlightbackground=standard_button_bg, fg=button_fg)
         button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, heigh=3,
                                highlightbackground=standard_button_bg, fg=button_fg)
+        button_random = Button(button_frame, text="Random", command=randomize, font=button_font, width=10, heigh=3,
+                               highlightbackground=standard_button_bg, fg=button_fg)
         button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, heigh=3,
                               highlightbackground=cancel_button_bg, fg=button_fg)
         button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, heigh=3,
@@ -120,6 +135,7 @@ class UserInput:
         button_frame.place(anchor='center', relx=0.5, rely=0.9)
         button_increase.pack(side='left')
         button_reduce.pack(side='left')
+        button_random.pack(side='left')
         button_clear.pack(side='left')
         button_next.pack(side='left')
         button_info.place(anchor='ne', relx=1, rely=0)
