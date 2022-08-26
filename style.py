@@ -8,6 +8,6 @@ button_fg = 'black'
 disabled_button_bg = 'grey'
 info_button_bg = '#909090'
 matrix_label_font = "Arial 12 bold italic"
-matrix_label_width = 8
+matrix_label_width = 15
 matrix_label_height = 1
 matrix_label_fg = 'black'

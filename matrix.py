@@ -1,5 +1,7 @@
 import numpy as np
+
 class Matrix:
+    """Represents square matrix"""
     def __init__(self, arg):
         if isinstance(arg, int):
             if arg < 1:
@@ -18,7 +20,7 @@ class Matrix:
             print(type(arg))
             raise TypeError
 
-    def __eq__(self, other):
+    def __eq__(self, other):    # ==
         if not (isinstance(other, Matrix) and self.size == other.size):
             return False
         for ln1, ln2 in zip(self.data, other.data):
@@ -27,13 +29,13 @@ class Matrix:
                     return False
         return True
 
-    def __str__(self):
+    def __str__(self):  # print()
         return str(self.data)
 
-    def __repr__(self):
+    def __repr__(self): # print() in arrays
         return str(self.data)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index):   # matrix[a:b]
         if isinstance(index, slice):
             return Matrix([line[index] for line in self.data[index]])
         else:

@@ -4,6 +4,7 @@ from matrix_invertor import MatrixInverter
 
 
 class Program:
+    """ Main logic of the program"""
     @staticmethod
     def Main():
         inp = UserInput()
