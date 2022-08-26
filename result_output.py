@@ -122,7 +122,7 @@ class ResultOutput:
 
         def next14():
             self.clear()
-            self.__output_matrix("Результуюча обернена матриця", res, next15)
+            self.__output_matrix("Результуюча обернена матриця", res, next15, "Next iteration")
 
         def next15():
             self.clear()
