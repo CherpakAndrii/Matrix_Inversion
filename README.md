@@ -16,8 +16,8 @@
 * Writing results to file
 * Bug with 0s on main diagonal fixed
 * Advanced result output
+* Method info
 
 ## Under development:
 * Comments
-* Method info
 * Documentation
