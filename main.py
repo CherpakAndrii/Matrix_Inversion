@@ -15,7 +15,7 @@ class Program:
         if not inp.method:
             print("The program has been closed at the method selection stage")
             quit(2)
-        m_inv = MatrixInverter.invert_bordering(inp.matrix) if inp.method == 'border' else MatrixInverter.invert_cells(output, inp.matrix)
+        m_inv = MatrixInverter.invert_bordering(inp.matrix) if inp.method == 'border' else MatrixInverter.invert_cells(inp.matrix)
         ResultToFile.print_to_file(inp.matrix, inp.method, m_inv)
 
 

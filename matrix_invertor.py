@@ -39,4 +39,7 @@ class MatrixInverter:
         L = K*X*(-1)
         M = Y*K*(-1)
         N = D_inv - Y*L
-        return K.merge(L, M, N)
+        res = K.merge(L, M, N)
+        output = ResultOutput()
+        output.output_cells(matrix, t, p, A, B, C, D, D_inv, X, Y, K, L, M, N, res)
+        return res

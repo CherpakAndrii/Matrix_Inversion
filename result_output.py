@@ -56,9 +56,72 @@ class ResultOutput:
 
         def next8():
             self.clear()
-            self.__output_matrix("A^(-1) = ((B^(-1), r), (q, 1/a))", A_inv, next9)
+            self.__output_matrix("A^(-1) = ((B^(-1), r), (q, 1/a))", A_inv, next9, "Next iteration")
 
         def next9():
+            self.clear()
+            self.root.destroy()
+
+        self.__output_matrix("Введена матриця: ", matrix, next1)
+        self.root.mainloop()
+
+    def output_cells(self, matrix, t, p, A, B, C, D, D_inv, X, Y, K, L, M, N, res):
+        def next1():
+            self.clear()
+            self.__output_one_value("Розмір матриці t", "t = ", t, next2)
+
+        def next2():
+            self.clear()
+            self.__output_one_value("Половина розміру матриці p", "p = t/2 = ", p, next3)
+
+        def next3():
+            self.clear()
+            self.__output_matrix("Верхня ліва підматриця A", A, next4)
+
+        def next4():
+            self.clear()
+            self.__output_matrix("Верхня права підматриця B", B, next5)
+
+        def next5():
+            self.clear()
+            self.__output_matrix("Нижня ліва підматриця C", C, next6)
+
+        def next6():
+            self.clear()
+            self.__output_matrix("Нижня права підматриця D", D, next7)
+
+        def next7():
+            self.clear()
+            self.__output_matrix("Інвертована підматриця D^(-1)", D_inv, next8)
+
+        def next8():
+            self.clear()
+            self.__output_matrix("Проміжна підматриця X = B*D^(-1)", X, next9)
+
+        def next9():
+            self.clear()
+            self.__output_matrix("Проміжна підматриця Y = D^(-1)*C", Y, next10)
+        def next10():
+            self.clear()
+            self.__output_matrix("Результуюча підматриця K = (A-X*C)^(-1)", K, next11)
+
+        def next11():
+            self.clear()
+            self.__output_matrix("Результуюча підматриця L = K*X*(-1)", L, next12)
+
+        def next12():
+            self.clear()
+            self.__output_matrix("Результуюча підматриця M = Y*K*(-1)", M, next13)
+
+        def next13():
+            self.clear()
+            self.__output_matrix("Результуюча підматриця N = D^(-1) - Y*L", N, next14)
+
+        def next14():
+            self.clear()
+            self.__output_matrix("Результуюча обернена матриця", res, next15)
+
+        def next15():
             self.clear()
             self.root.destroy()
 
