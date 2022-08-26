@@ -2,10 +2,12 @@ from tkinter import Label, Frame, Button, Tk
 from style import *
 from non_square_matrix import NonSquareMatrix
 from matrix import Matrix
+import style
 
 
 class ResultOutput:
     def __init__(self):
+        style.is_closed = True
         self.root = Tk()
         self.root.config(bg=standard_bg)
         self.root.title("Обернення матриці")
@@ -14,12 +16,18 @@ class ResultOutput:
 
         self.title_label = Label(self.root, fg='blue', bg=standard_bg, font=article_font)
         self.field_frame = Frame(self.root, bg=standard_bg)
-        self.next_button = Button(self.root, width=15, height=3, font=button_font,
+        self.button_frame = Frame(self.root, bg=standard_bg)
+        self.next_button = Button(self.button_frame, width=15, height=3, font=button_font,
                                   highlightbackground=confirm_button_bg, fg=button_fg)
+        self.quick_res_button = Button(self.button_frame, width=15, height=3, font=button_font, text="Quick result",
+                                       highlightbackground=cancel_button_bg, fg=button_fg, command=self.quick_res)
 
         self.title_label.place(anchor='center', relx=0.5, rely=0.1)
-        self.next_button.place(anchor='center', relx=0.5, rely=0.9)
+        self.button_frame.place(anchor='center', relx=0.5, rely=0.9)
         self.field_frame.place(anchor='center', relx=0.5, rely=0.5)
+
+        self.next_button.pack(side='left')
+        self.quick_res_button.pack(side='left')
 
     def clear(self):
         """Очищення вікна"""
@@ -62,6 +70,7 @@ class ResultOutput:
 
         def next9():
             self.clear()
+            style.is_closed = False
             self.root.destroy()
 
         self.__output_matrix("Початкова матриця: ", matrix, next1)
@@ -126,6 +135,7 @@ class ResultOutput:
 
         def next15():
             self.clear()
+            style.is_closed = False
             self.root.destroy()
 
         self.__output_matrix("Введена матриця: ", matrix, next1)
@@ -157,3 +167,9 @@ class ResultOutput:
                       height=matrix_label_height, width=matrix_label_width, fg=matrix_label_fg)
         val_label.pack()
         self.temporary_elements.append(val_label)
+
+    def quick_res(self):
+        self.clear()
+        style.is_closed = False
+        style.quick_result = True
+        self.root.destroy()
