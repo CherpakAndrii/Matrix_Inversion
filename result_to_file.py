@@ -2,8 +2,10 @@ from matrix import Matrix
 
 
 class ResultToFile:
+    """Збереження результатів у файл"""
     @staticmethod
     def print_to_file(inp_matrix: Matrix, method: str, result_matrix: Matrix, filename="result.txt"):
+        """Вивиедення результатів"""
         test = round(result_matrix * inp_matrix)
         round(result_matrix)
         handle = open(filename, 'w+')
@@ -20,6 +22,7 @@ class ResultToFile:
 
     @staticmethod
     def __matr_to_string(matrix: Matrix):
+        """Виведення матриці"""
         string = ""
         for line in matrix.data:
             for num in line:

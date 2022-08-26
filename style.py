@@ -1,3 +1,4 @@
+"""Файл з основними стилями"""
 standard_bg = '#cdcdcd'
 button_font = "Arial 15 bold italic"
 article_font = "Arial 20 bold italic"

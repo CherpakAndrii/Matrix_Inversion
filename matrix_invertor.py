@@ -4,8 +4,10 @@ from result_output import ResultOutput
 
 
 class MatrixInverter:
+    """Основний математичний модуль: обернення матриць"""
     @staticmethod
     def invert_bordering(matrix):
+        """Метод окаймлення"""
         if matrix.size == 1:
             return Matrix([[1/matrix.data[0][0]]])
 
@@ -25,6 +27,7 @@ class MatrixInverter:
 
     @staticmethod
     def invert_cells(matrix):
+        """Метод розбиття на клітинки"""
         if matrix.size == 1:
             return Matrix([[1/matrix.data[0][0]]])
         t = matrix.size

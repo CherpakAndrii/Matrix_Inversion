@@ -41,7 +41,7 @@ class Matrix:
         else:
             raise ValueError
 
-    def __mul__(self, other):
+    def __mul__(self, other):   # *
         if isinstance(other, int) or isinstance(other, float):
             return Matrix([[num * other for num in line] for line in self.data])
         elif isinstance(other, Matrix):
@@ -53,7 +53,7 @@ class Matrix:
         else:
             raise TypeError
 
-    def __add__(self, other):
+    def __add__(self, other):   # +
         if isinstance(other, Matrix):
             if self.size == other.size:
                 return Matrix([[num1+num2 for (num1, num2) in zip(line1, line2)]
@@ -63,7 +63,7 @@ class Matrix:
         else:
             raise TypeError
 
-    def __sub__(self, other):
+    def __sub__(self, other):   # -
         if isinstance(other, Matrix):
             if self.size == other.size:
                 return Matrix([[num1-num2 for (num1, num2) in zip(line1, line2)]
@@ -75,6 +75,7 @@ class Matrix:
 
     @staticmethod
     def __check_inputted_data(numbers, size):
+        """Перевірка матриці на можливість обернення"""
         if not (isinstance(numbers, list) and len(numbers) == size):
             return False
         for line in numbers:
@@ -86,15 +87,18 @@ class Matrix:
         return True
 
     def fill(self, numbers):
+        """Заповнення матриці новими даними"""
         if Matrix.__check_inputted_data(numbers, self.size):
             self.data = numbers
         else:
             raise TypeError
 
     def get_minor(self, i, j):
+        """пошук мінора матриці"""
         return Matrix([line[:j]+line[j+1:] for line in self.data[:i]+self.data[i+1:]])
 
     def get_determinant(self):
+        """Пошук визначника матриці"""
         if self.size == 1:
             return self.data[0][0]
         return sum([self.data[0][i] * (-1) ** i * self.get_minor(0, i).get_determinant() for i in range(self.size)]) \
@@ -102,6 +106,7 @@ class Matrix:
         # значно більше часу через факторіальну складність алгоритму, тому використаємо numpy
 
     def add_border(self, row, column, corner_element):
+        """Додавання меж до матриці"""
         numbers = self.data
         row.data[0].append(corner_element)
         numbers.append(
@@ -111,6 +116,7 @@ class Matrix:
         return Matrix(numbers)
 
     def __round__(self, n=3):
+        """ Округлення значень матриці"""
         for i in range(self.size):
             for j in range(self.size):
                 self.data[i][j] = round(self.data[i][j], n)

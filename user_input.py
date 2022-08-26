@@ -2,10 +2,10 @@ from tkinter import Label, Button, Tk, Entry, Frame, StringVar, Radiobutton, END
 from style import *
 from matrix import Matrix
 from matrix_randomizer import MatrixRandomizer
-from matrix_randomizer import MatrixRandomizer
 
 
 class UserInput:
+    """Введення матриці і методу розв'язання"""
     def __init__(self):
         self.__fields = []
         self.__field_values = []
@@ -15,6 +15,7 @@ class UserInput:
         self.method = None
 
     def get_matrix(self):
+        """Введення матриці"""
         root = Tk()
         root.config(bg=standard_bg)
         root.title("Обернення матриці")
@@ -26,10 +27,12 @@ class UserInput:
 
         # just a function for info button
         def get_info():
+            """Виведення інформації про матрицю, яку повинно бути введено"""
             messagebox.showinfo("Введення матриці",
                                 '''Введіть матрицю, використовуючи цифри, оператор "-" та роздільник ".". Порожні поля будуть замінені нулями.''')
 
         def increase():
+            """Збільшення розмірностей матриці"""
             new_line = Frame(field_frame)
             self.__lines.append(new_line)
             values = [StringVar() for _ in range(self.matrix_size)]
@@ -54,6 +57,7 @@ class UserInput:
                 button_increase.config(highlightbackground=disabled_button_bg, state='disabled')
 
         def reduce():
+            """Зменшення розмірностей матриці"""
             self.__fields.pop()
             self.__lines.pop().pack_forget()
             self.__field_values.pop()
@@ -69,6 +73,7 @@ class UserInput:
                 button_reduce.config(highlightbackground=disabled_button_bg, state='disabled')
 
         def randomize():
+            """Введення випадкової матриці у поля"""
             if self.matrix_size >= 8:
                 clear()
                 label1.config(text="Очікуйте...")
@@ -81,11 +86,13 @@ class UserInput:
             label1.config(text="Введіть матрицю:")
 
         def clear():
+            """Очищення полів"""
             for line in self.__fields:
                 for field in line:
                     field.delete(0, END)
 
         def __parse_matrix():
+            """Парсинг введеної матриці"""
             numbers = []
             for line in self.__field_values:
                 row = []
@@ -105,6 +112,7 @@ class UserInput:
 
         # closes the current window and going to the next stage
         def go_next():
+            """Перехід до наступного пункту"""
             try:
                 self.matrix = __parse_matrix()
                 root.destroy()
@@ -146,6 +154,7 @@ class UserInput:
         root.mainloop()
 
     def get_method(self):
+        """Обрання методу обернення матриці"""
         root = Tk()
         root.config(bg=standard_bg)
         root.title("Обернення матриці")
@@ -157,10 +166,12 @@ class UserInput:
         rb2 = Radiobutton(root, text="Метод розбиття на клітинки", bg=standard_bg, variable=method, value="cells")
 
         def get_info():
+            """Виведення інформації про методи обернення матриці"""
             messagebox.showinfo("Дані про методи", "Методи окаймлення та розбиття на клітки передбачають знаходження обернених иатрць високих розмірностей відштовхуючись від відомих обернених матриць менших розмірностей. Метод окаймлення використовує підматрицю на 1 розмірність меншу, а метод розбиття на клітинки намагається розбити введену матрицю на 4 приблизно однакових сектори. Після цього обидва методи рекурсивно викликаються для цих підматриць.")
 
         # closes the current window and going to the next stage
         def end():
+            """Перехід до наступного пункту"""
             self.method = method.get()
             root.destroy()
 

@@ -17,7 +17,7 @@
 * Bug with 0s on main diagonal fixed
 * Advanced result output
 * Method info
+* Comments
 
 ## Under development:
-* Comments
 * Documentation

@@ -22,10 +22,12 @@ class ResultOutput:
         self.field_frame.place(anchor='center', relx=0.5, rely=0.5)
 
     def clear(self):
+        """Очищення вікна"""
         for element in self.temporary_elements:
             element.pack_forget()
 
     def output_border(self, matrix, submatrix_inv, V, U, alpha, r, q, B_inv, A_inv):
+        """Виведення результатів однієї ітерації методу окаймлення"""
         def next1():
             self.clear()
             self.__output_matrix("Обернена підматриця: ", submatrix_inv, next2)
@@ -62,10 +64,11 @@ class ResultOutput:
             self.clear()
             self.root.destroy()
 
-        self.__output_matrix("Введена матриця: ", matrix, next1)
+        self.__output_matrix("Початкова матриця: ", matrix, next1)
         self.root.mainloop()
 
     def output_cells(self, matrix, t, p, A, B, C, D, D_inv, X, Y, K, L, M, N, res):
+        """Виведення результатів однієї ітерації методу розбиття на клітки"""
         def next1():
             self.clear()
             self.__output_one_value("Розмір матриці t", "t = ", t, next2)
@@ -129,6 +132,7 @@ class ResultOutput:
         self.root.mainloop()
 
     def __output_matrix(self, title: str, matrix: NonSquareMatrix, next_func, button_text='Next value'):
+        """Виведення матриці на екран"""
         if isinstance(matrix, Matrix):
             matrix = NonSquareMatrix(matrix.data)
 
@@ -146,6 +150,7 @@ class ResultOutput:
                 self.temporary_elements.append(matrix_label)
 
     def __output_one_value(self, title: str, text: str, value: float, next_func, button_text='Next value'):
+        """Виведення однієї числової змінної на екран"""
         self.title_label.config(text=title)
         self.next_button.config(text=button_text, command=next_func)
         val_label = Label(self.field_frame, text=text+str(round(value, 3)), bg=standard_bg, font=matrix_label_font,
