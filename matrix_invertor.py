@@ -1,5 +1,6 @@
 from matrix import Matrix
 from non_square_matrix import NonSquareMatrix
+from result_output import ResultOutput
 
 
 class MatrixInverter:
@@ -16,6 +17,8 @@ class MatrixInverter:
         q = V * submatr_inv * (-1 / alpha)
         B_inv = Matrix((submatr_inv - (submatr_inv*U)*q).data)
         A_inv = B_inv.add_border(q, r, 1/alpha)
+        output = ResultOutput()
+        output.output_border(matrix, submatr_inv, V, U, alpha, r, q, B_inv, A_inv)
         return A_inv
 
     @staticmethod

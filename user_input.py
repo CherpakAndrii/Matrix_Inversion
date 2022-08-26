@@ -20,7 +20,7 @@ class UserInput:
         root.title("Обернення матриці")
         root.geometry('850x450')
 
-        label1 = Label(root, fg='blue', bg=standard_bg, text="Введіть матрицю:", font=article_font, heigh=3)
+        label1 = Label(root, fg='blue', bg=standard_bg, text="Введіть матрицю:", font=article_font, height=3)
         field_frame = Frame(root)
         button_frame = Frame(root)
 
@@ -117,17 +117,17 @@ class UserInput:
             except:
                 messagebox.showinfo("Неочікувана помилка", "Упс, щось пішло не так :(")
 
-        button_increase = Button(button_frame, text="+", command=increase, font=button_font, width=10, heigh=3,
+        button_increase = Button(button_frame, text="+", command=increase, font=button_font, width=10, height=3,
                                  highlightbackground=standard_button_bg, fg=button_fg)
-        button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, heigh=3,
+        button_reduce = Button(button_frame, text="-", command=reduce, font=button_font, width=10, height=3,
                                highlightbackground=standard_button_bg, fg=button_fg)
-        button_random = Button(button_frame, text="Random", command=randomize, font=button_font, width=10, heigh=3,
+        button_random = Button(button_frame, text="Random", command=randomize, font=button_font, width=10, height=3,
                                highlightbackground=standard_button_bg, fg=button_fg)
-        button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, heigh=3,
+        button_clear = Button(button_frame, text="Очистити", command=clear, font=button_font, width=20, height=3,
                               highlightbackground=cancel_button_bg, fg=button_fg)
-        button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, heigh=3,
+        button_next = Button(button_frame, text="Далі", command=go_next, font=button_font, width=20, height=3,
                              highlightbackground=confirm_button_bg, fg=button_fg)
-        button_info = Button(root, text="?", command=get_info, font=button_font, width=4, heigh=2, highlightbackground=info_button_bg,
+        button_info = Button(root, text="?", command=get_info, font=button_font, width=4, height=2, highlightbackground=info_button_bg,
                              fg=button_fg)
 
         label1.pack()
@@ -164,9 +164,9 @@ class UserInput:
             self.method = method.get()
             root.destroy()
 
-        button_info = Button(root, text="?", command=get_info, width=4, heigh=2, font=button_font, highlightbackground=info_button_bg,
+        button_info = Button(root, text="?", command=get_info, width=4, height=2, font=button_font, highlightbackground=info_button_bg,
                              fg=button_fg)
-        button_end = Button(root, text="Обчислити", command=end, width=15, heigh=3, font=button_font,
+        button_end = Button(root, text="Обчислити", command=end, width=15, height=3, font=button_font,
                             highlightbackground=confirm_button_bg, fg=button_fg)
 
         label1.place(anchor='center', relx=0.5, rely=0.25)
