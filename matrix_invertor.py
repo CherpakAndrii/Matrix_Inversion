@@ -1,7 +1,7 @@
 from matrix import Matrix
 from non_square_matrix import NonSquareMatrix
 from result_output import ResultOutput
-from style import is_closed, quick_result
+import style
 
 
 class MatrixInverter:
@@ -46,10 +46,10 @@ class MatrixInverter:
         M = Y*K*(-1)
         N = D_inv - Y*L
         res = K.merge(L, M, N)
-        output = ResultOutput()
-        if not quick_result:
+        if not style.quick_result:
+            output = ResultOutput()
             output.output_cells(matrix, t, p, A, B, C, D, D_inv, X, Y, K, L, M, N, res)
-        if is_closed:
+        if style.is_closed:
             print("The program has been closed at the calculation stage")
             quit(3)
         return res

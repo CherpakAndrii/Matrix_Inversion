@@ -1,6 +1,7 @@
 from result_to_file import ResultToFile
 from user_input import UserInput
 from matrix_invertor import MatrixInverter
+from result_output import ResultOutput
 
 
 class Program:
@@ -17,6 +18,8 @@ class Program:
             print("The program has been closed at the method selection stage")
             quit(2)
         m_inv = MatrixInverter.invert_bordering(inp.matrix) if inp.method == 'border' else MatrixInverter.invert_cells(inp.matrix)
+        final_result = ResultOutput()
+        final_result.output_final_result(m_inv)
         ResultToFile.print_to_file(inp.matrix, inp.method, m_inv)
 
 

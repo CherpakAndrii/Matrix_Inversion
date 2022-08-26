@@ -173,3 +173,12 @@ class ResultOutput:
         style.is_closed = False
         style.quick_result = True
         self.root.destroy()
+
+    def output_final_result(self, matrix: Matrix):
+        self.quick_res_button.pack_forget()
+        def close():
+            self.clear()
+            self.root.destroy()
+
+        self.__output_matrix("Кінцевий результат: ", matrix, close, "Close")
+        self.root.mainloop()
